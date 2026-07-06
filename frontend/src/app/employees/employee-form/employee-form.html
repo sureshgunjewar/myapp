@@ -1,0 +1,36 @@
+<section class="page">
+  <div class="page-header">
+    <h2>{{ editingId ? 'Edit Employee' : 'Create Employee' }}</h2>
+    <a routerLink="/employees" class="btn secondary">Back to List</a>
+  </div>
+
+  <div class="card">
+    <form (ngSubmit)="submitEmployee()">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" [(ngModel)]="employeeForm.name" required />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="employeeForm.email" required />
+      </div>
+
+      <div class="field">
+        <label for="department">Department</label>
+        <input id="department" name="department" [(ngModel)]="employeeForm.department" />
+      </div>
+
+      <div class="field">
+        <label for="position">Position</label>
+        <input id="position" name="position" [(ngModel)]="employeeForm.position" />
+      </div>
+
+      <div class="actions">
+        <button type="submit">{{ editingId ? 'Update' : 'Create' }}</button>
+      </div>
+    </form>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</section>

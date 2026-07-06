@@ -1,0 +1,41 @@
+<section class="page">
+  <div class="page-header">
+    <h2>Employees</h2>
+    <a routerLink="/employees/new" class="btn">Add Employee</a>
+  </div>
+
+  <p class="error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+
+  <div class="card">
+    <div class="page-header compact">
+      <h3>Employee List</h3>
+      <span *ngIf="isLoading()">Loading...</span>
+    </div>
+
+    <div class="empty" *ngIf="!isLoading() && employees().length === 0">No employees found.</div>
+
+    <table *ngIf="employees().length > 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Position</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees()">
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.department }}</td>
+          <td>{{ employee.position }}</td>
+          <td>
+            <button type="button" (click)="editEmployee(employee)">Edit</button>
+            <button type="button" class="danger" (click)="deleteEmployee(employee.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

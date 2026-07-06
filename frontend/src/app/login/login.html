@@ -1,0 +1,50 @@
+<section class="login-card">
+  <h2>{{ isRegistering ? 'Register' : 'Login' }}</h2>
+
+  <form *ngIf="!isRegistering" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" [(ngModel)]="email" required />
+      <small class="error" *ngIf="emailError">{{ emailError }}</small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" [(ngModel)]="password" required />
+      <small class="error" *ngIf="passwordError">{{ passwordError }}</small>
+    </div>
+
+    <button type="submit" [disabled]="isLoading()">{{ isLoading() ? 'Signing in...' : 'Login' }}</button>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+
+  <form *ngIf="isRegistering" (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="registerName">Name</label>
+      <input id="registerName" name="registerName" [(ngModel)]="registerName" required />
+    </div>
+
+    <div class="form-group">
+      <label for="registerEmail">Email</label>
+      <input id="registerEmail" name="registerEmail" type="email" [(ngModel)]="registerEmail" required />
+    </div>
+
+    <div class="form-group">
+      <label for="registerPassword">Password</label>
+      <input id="registerPassword" name="registerPassword" type="password" [(ngModel)]="registerPassword" required />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" name="confirmPassword" type="password" [(ngModel)]="confirmPassword" required />
+    </div>
+
+    <button type="submit" [disabled]="isLoading()">{{ isLoading() ? 'Registering...' : 'Register' }}</button>
+    <p class="error" *ngIf="registerError">{{ registerError }}</p>
+    <p class="success" *ngIf="registerSuccess">{{ registerSuccess }}</p>
+  </form>
+
+  <button type="button" class="link-btn" (click)="toggleRegister()">
+    {{ isRegistering ? 'Back to Login' : 'Create an account' }}
+  </button>
+</section>

@@ -1,0 +1,67 @@
+<section class="employee-page">
+  <div class="panel">
+    <h2>{{ editingId ? 'Edit Employee' : 'Add Employee' }}</h2>
+
+    <form (ngSubmit)="submitEmployee()" #employeeFormRef="ngForm">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" [(ngModel)]="employeeForm.name" required />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="employeeForm.email" required />
+      </div>
+
+      <div class="field">
+        <label for="department">Department</label>
+        <input id="department" name="department" [(ngModel)]="employeeForm.department" />
+      </div>
+
+      <div class="field">
+        <label for="position">Position</label>
+        <input id="position" name="position" [(ngModel)]="employeeForm.position" />
+      </div>
+
+      <div class="actions">
+        <button type="submit">{{ editingId ? 'Update' : 'Create' }}</button>
+        <button type="button" class="secondary" *ngIf="editingId" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </form>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Employees</h2>
+      <span *ngIf="isLoading">Loading...</span>
+    </div>
+
+    <div class="empty" *ngIf="!isLoading && employees.length === 0">No employees found.</div>
+
+    <table *ngIf="employees.length > 0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Position</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.department }}</td>
+          <td>{{ employee.position }}</td>
+          <td>
+            <button type="button" (click)="editEmployee(employee)">Edit</button>
+            <button type="button" class="danger" (click)="deleteEmployee(employee.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+.page {
+  padding: 2rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+input {
+  padding: 0.65rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.actions {
+  margin-top: 1rem;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+}
+
+.btn {
+  text-decoration: none;
+  background: #2563eb;
+  color: white;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+}
+
+.btn.secondary {
+  background: #64748b;
+}
+
+.error {
+  color: #b91c1c;
+  margin-top: 0.75rem;
+}
