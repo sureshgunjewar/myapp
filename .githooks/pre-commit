@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+echo "Running RuboCop for backend..."
+
+cd backend
+bin/rubocop
+
+echo "RuboCop passed."

@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      match 'login', to: 'authentication#login', via: %i[post options]
-      match 'register', to: 'authentication#register', via: %i[post options]
-      match 'employees', to: '/application#options', via: :options
-      match 'employees/:id', to: '/application#options', via: :options
-      resources :employees, controller: '/employees'
+      match "login", to: "authentication#login", via: %i[post options]
+      match "register", to: "authentication#register", via: %i[post options]
+      match "employees", to: "/application#options", via: :options
+      match "employees/:id", to: "/application#options", via: :options
+      resources :employees, controller: "/employees"
     end
   end
 
-  match 'employees', to: 'application#options', via: :options
-  match 'employees/:id', to: 'application#options', via: :options
+  match "employees", to: "application#options", via: :options
+  match "employees/:id", to: "application#options", via: :options
 
   resources :employees
 

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def api_request?
-    request.format.json? || request.path.start_with?('/api/') || request.path.start_with?('/employees')
+    request.format.json? || request.path.start_with?("/api/") || request.path.start_with?("/employees")
   end
 
   def preflight_request?
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cors_request?
-    request.origin.present? && (request.path.start_with?('/api/') || request.path.start_with?('/employees'))
+    request.origin.present? && (request.path.start_with?("/api/") || request.path.start_with?("/employees"))
   end
 
   def handle_preflight
@@ -33,9 +33,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cors_headers
-    response.headers['Access-Control-Allow-Origin'] = request.headers['Origin'] || '*'
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Authorization, Content-Type, Accept'
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"] || "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
   end
 end

@@ -1,5 +1,5 @@
 class Api::V1::AuthenticationController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:login, :register]
+  skip_before_action :verify_authenticity_token, only: [ :login, :register ]
 
   def options
     head :ok
@@ -20,7 +20,7 @@ class Api::V1::AuthenticationController < ApplicationController
         }
       }, status: :ok
     else
-      render json: { error: 'Invalid email or password' }, status: :unauthorized
+      render json: { error: "Invalid email or password" }, status: :unauthorized
     end
   end
 
@@ -28,7 +28,7 @@ class Api::V1::AuthenticationController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      render json: { message: 'User registered successfully' }, status: :created
+      render json: { message: "User registered successfully" }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -43,7 +43,7 @@ class Api::V1::AuthenticationController < ApplicationController
   def encode_token(payload)
     exp = 24.hours.from_now.to_i
     payload[:exp] = exp
-    JWT.encode(payload, secret_key, 'HS256')
+    JWT.encode(payload, secret_key, "HS256")
   end
 
   def secret_key

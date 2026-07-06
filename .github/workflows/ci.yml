@@ -23,6 +23,9 @@ jobs:
           working-directory: backend
           bundler-cache: true
 
+      - name: Run RuboCop
+        run: bin/rubocop
+
       - name: Run backend tests
         run: bin/rails test
 

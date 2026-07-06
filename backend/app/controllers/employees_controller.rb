@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
 
   def index
     return head :not_found if request.format.html?
-    
+
     @employees = Employee.order(:created_at)
     render json: @employees
   end
@@ -50,17 +50,17 @@ class EmployeesController < ApplicationController
   def authenticate_request
     return head :ok if request.options?
 
-    token = request.headers['Authorization']&.split(' ')&.last
+    token = request.headers["Authorization"]&.split(" ")&.last
 
     if token.blank?
-      render json: { error: 'Unauthorized' }, status: :unauthorized and return
+      render json: { error: "Unauthorized" }, status: :unauthorized and return
     end
 
     begin
-      decoded = JWT.decode(token, secret_key, true, algorithm: 'HS256').first
-      @current_user = User.find(decoded['user_id'])
+      decoded = JWT.decode(token, secret_key, true, algorithm: "HS256").first
+      @current_user = User.find(decoded["user_id"])
     rescue JWT::DecodeError, ActiveRecord::RecordNotFound
-      render json: { error: 'Unauthorized' }, status: :unauthorized and return
+      render json: { error: "Unauthorized" }, status: :unauthorized and return
     end
   end
 
@@ -69,9 +69,9 @@ class EmployeesController < ApplicationController
   end
 
   def disable_http_cache
-    response.headers['Cache-Control'] = 'no-store'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
   end
 
   def set_employee
