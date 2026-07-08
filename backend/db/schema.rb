@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_07_06_090000) do
-  create_table "employees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "employees", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "department", null: false
     t.string "email", null: false
@@ -21,7 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_06_090000) do
     t.index ["email"], name: "index_employees_on_email", unique: true
   end
 
-  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.decimal "amount", precision: 10
     t.datetime "created_at", null: false
     t.string "payment_status"
@@ -32,7 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_06_090000) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.boolean "active"
     t.integer "age"
     t.string "city"
